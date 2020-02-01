@@ -1,0 +1,11 @@
+{
+  "name": "recorder",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "author": "June Bloom <june.a.bloom@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "browserslist": [
+    "last 2 versions and since 2018 and > 0.1% in US"
+  ]
+}
