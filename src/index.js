@@ -76,7 +76,7 @@ let App = () =>
       {},
       state.recordings.map(recording =>
         h('li', {}, [
-          h('a', { href: recording.url }, [
+          h('a', { href: recording.url, download: 'recording.ogg' }, [
             recording.timestamp.toLocaleString()
           ]),
           h(
