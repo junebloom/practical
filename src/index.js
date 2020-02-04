@@ -70,6 +70,7 @@ let App = () =>
       [state.recording ? 'stop' : 'record']
     ),
     h('h2', {}, ['recordings']),
+    h('audio', { id: 'player', controls: true }, []),
     h(
       'ul',
       {},
@@ -77,7 +78,19 @@ let App = () =>
         h('li', {}, [
           h('a', { href: recording.url }, [
             recording.timestamp.toLocaleString()
-          ])
+          ]),
+          h(
+            'button',
+            {
+              onclick: () => {
+                const player = document.getElementById('player')
+                player.src = recording.url
+                player.load()
+                player.play()
+              }
+            },
+            ['play']
+          )
         ])
       )
     )
