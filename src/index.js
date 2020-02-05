@@ -1,6 +1,7 @@
 import { h, render } from './vdom.js'
 
 let state = {
+  playing: null,
   recording: false,
   mediaRecorder: null,
   slices: [],
@@ -70,7 +71,15 @@ let App = () =>
       [state.recording ? 'stop' : 'record']
     ),
     h('h2', {}, ['recordings']),
-    h('audio', { id: 'player', controls: true }, []),
+    h(
+      'audio',
+      {
+        autoplay: true,
+        controls: true,
+        src: state.playing ? state.playing.url : ''
+      },
+      []
+    ),
     h(
       'ul',
       {},
@@ -81,14 +90,7 @@ let App = () =>
           ]),
           h(
             'button',
-            {
-              onclick: () => {
-                const player = document.getElementById('player')
-                player.src = recording.url
-                player.load()
-                player.play()
-              }
-            },
+            { onclick: () => setState({ ...state, playing: recording }) },
             ['play']
           )
         ])
