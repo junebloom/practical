@@ -2,11 +2,9 @@ import { h } from '../vdom'
 import Recorder from './Recorder'
 
 const App = (state, setState) =>
-  h('main', {}, [
+  h('main', { className: 'main' }, [
     // Recorder
     Recorder(state, setState),
-    // Recordings list header
-    h('h2', {}, ['recordings']),
     // Player
     h(
       'audio',
@@ -17,6 +15,8 @@ const App = (state, setState) =>
       },
       []
     ),
+    // Recordings list header
+    h('h1', {}, ['recordings']),
     // Recordings list
     h(
       'ul',

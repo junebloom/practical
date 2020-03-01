@@ -66,9 +66,14 @@ function Recorder(state, setState) {
   }
 
   // Render the component
-  return h('button', { onclick: () => (state.recording ? stop() : start()) }, [
-    state.recording ? 'stop' : 'record'
-  ])
+  return h(
+    'button',
+    {
+      onclick: () => (state.recording ? stop() : start()),
+      className: 'recorder'
+    },
+    [state.recording ? 'stop' : 'record']
+  )
 }
 
 export default Recorder
