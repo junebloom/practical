@@ -1,5 +1,6 @@
 import { h } from '../vdom'
 import Recorder from './Recorder'
+import RecordingsList from './RecordingsList'
 
 const App = (state, setState) =>
   h('main', { className: 'main' }, [
@@ -15,27 +16,8 @@ const App = (state, setState) =>
       },
       []
     ),
-    // Recordings list header
-    h('h1', {}, ['recordings']),
-    // Recordings list
-    h(
-      'ul',
-      {},
-      state.recordings.map(recording =>
-        h('li', {}, [
-          h('a', { href: recording.url, download: 'recording.ogg' }, [
-            recording.timestamp.toLocaleString()
-          ]),
-          h(
-            'button',
-            {
-              onclick: () => setState({ ...state, playing: recording })
-            },
-            ['play']
-          )
-        ])
-      )
-    )
+    // List of recorded audio clips
+    RecordingsList(state, setState)
   ])
 
 export default App
