@@ -7,8 +7,8 @@ const RecordingsList = (state, setState) =>
     h('h1', {}, ['recordings']),
     // Recordings list
     h(
-      'ul',
-      { className: 'recordingsList' },
+      'ol',
+      { className: 'recordings-list' },
       state.recordings.map(recording => Recording(state, setState, recording))
     )
   ])

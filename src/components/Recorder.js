@@ -70,7 +70,7 @@ function Recorder(state, setState) {
     'button',
     {
       onclick: () => (state.recording ? stop() : start()),
-      className: 'recorder'
+      className: 'button button--record'
     },
     [state.recording ? 'stop' : 'record']
   )
