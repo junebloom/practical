@@ -14,7 +14,8 @@ const App = (state, setState) =>
       {
         autoplay: true,
         controls: true,
-        src: state.playing ? state.playing.url : ''
+        src: state.playing ? state.playing.url : '',
+        className: 'player'
       },
       []
     ),

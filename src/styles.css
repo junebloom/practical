@@ -1,7 +1,7 @@
 /* Document styles */
 html {
-  --color-primary: hsl(229, 75%, 84%);
-  --color-red: hsl(4, 100%, 70%);
+  --color-primary: hsl(204, 72%, 74%);
+  --color-red: hsl(0, 100%, 76%);
   --color-dark: hsl(0, 0%, 30%);
   --color-light: hsl(0, 0%, 93%);
   --color-lighter: hsl(0, 0%, 98%);
@@ -39,6 +39,11 @@ body {
 .button--record:hover {
   background: var(--color-red);
   color: var(--color-lighter);
+}
+.player {
+  align-self: stretch;
+  width: 100%;
+  border-radius: 0;
 }
 .recordings-list {
   margin: 0.5em 0;
