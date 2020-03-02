@@ -3,9 +3,11 @@ import Recorder from './Recorder'
 import RecordingsList from './RecordingsList'
 
 const App = (state, setState) =>
-  h('main', { className: 'main' }, [
+  h('main', { className: 'd-flex flex-column' }, [
     // Recorder
     Recorder(state, setState),
+    // Recordings list header
+    h('h1', {}, ['recordings']),
     // Player
     h(
       'audio',

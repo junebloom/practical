@@ -3,9 +3,6 @@ import Recording from './Recording'
 
 const RecordingsList = (state, setState) =>
   h('section', {}, [
-    // Recordings list header
-    h('h1', {}, ['recordings']),
-    // Recordings list
     h(
       'ol',
       { className: 'recordings-list' },

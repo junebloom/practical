@@ -5,23 +5,10 @@ const Recording = (state, setState, recording) =>
     h(
       'button',
       {
-        className: 'button button--dark',
+        className: 'button flex-grow text-left',
         onclick: () => setState({ ...state, playing: recording })
       },
-      ['play']
-    ),
-    h('span', { className: 'd-flex flex-grow bg-lighter p-1' }, [
-      h(
-        'a',
-        {
-          className: '',
-          href: recording.url,
-          download: 'recording.ogg'
-        },
-        ['download']
-      ),
-      h('span', { className: 'flex-grow' }, []),
-      h('span', {}, [
+      [
         recording.timestamp
           .toLocaleString(undefined, {
             weekday: 'short',
@@ -30,8 +17,17 @@ const Recording = (state, setState, recording) =>
             second: '2-digit'
           })
           .toLowerCase()
-      ])
-    ])
+      ]
+    ),
+    h(
+      'a',
+      {
+        className: 'button button--dark',
+        href: recording.url,
+        download: 'recording.ogg'
+      },
+      ['download']
+    )
   ])
 
 export default Recording
