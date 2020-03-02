@@ -27,7 +27,7 @@ body {
   align-self: stretch;
   padding: 1em;
   border: none;
-  border-bottom: 5px solid var(--color-shadow);
+  border-bottom: 2px solid var(--color-shadow);
   background: var(--color-lighter);
   color: var(--color-darker);
 }
