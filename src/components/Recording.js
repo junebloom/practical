@@ -24,7 +24,7 @@ const Recording = (state, setState, recording) =>
       {
         className: 'button button--dark',
         href: recording.url,
-        download: 'recording.ogg'
+        download: 'recording.webm'
       },
       ['download']
     )

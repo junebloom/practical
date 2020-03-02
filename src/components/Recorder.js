@@ -16,7 +16,7 @@ function Recorder(state, setState) {
 
     // Create the MediaRecorder instance
     const mediaRecorder = new MediaRecorder(stream, {
-      mimeType: 'audio/ogg',
+      mimeType: 'audio/webm',
       audioBitsPerSecond: 256000
     })
 
