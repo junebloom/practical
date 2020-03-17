@@ -5,7 +5,7 @@ const Recording = (state, setState, recording) =>
     h(
       'button',
       {
-        className: 'button flex-grow text-left',
+        className: 'button flex-grow text-left p-05',
         onclick: () => setState({ ...state, playing: recording })
       },
       [
@@ -22,11 +22,11 @@ const Recording = (state, setState, recording) =>
     h(
       'a',
       {
-        className: 'button button--dark',
+        className: 'button button--dark p-05',
         href: recording.url,
         download: 'recording.webm'
       },
-      ['download']
+      ['save']
     )
   ])
 
