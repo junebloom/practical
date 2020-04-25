@@ -7,3 +7,4 @@ A zero-dependency progressive web app for quickly and easily practicing singing,
 - better player
 - audio visualizations
 - sessions/projects
+- a2hs

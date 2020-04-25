@@ -6,19 +6,14 @@ const App = (state, setState) =>
   h('main', { className: 'd-flex flex-column' }, [
     // Recorder
     Recorder(state, setState),
-    // Recordings list header
-    h('h1', {}, ['recordings']),
     // Player
     h(
       'audio',
-      {
-        autoplay: true,
-        controls: true,
-        src: state.playing ? state.playing.url : '',
-        className: 'player'
-      },
+      { src: state.player.current ? state.player.current.url : '' },
       []
     ),
+    // Recordings list header
+    h('h1', {}, ['recordings']),
     // List of recorded audio clips
     RecordingsList(state, setState)
   ])

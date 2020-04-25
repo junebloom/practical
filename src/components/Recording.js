@@ -6,7 +6,16 @@ const Recording = (state, setState, recording) =>
       'button',
       {
         className: 'button flex-grow text-left p-05',
-        onclick: () => setState({ ...state, playing: recording })
+        onclick: () =>
+          setState({
+            ...state,
+            player: {
+              ...state.player,
+              current: recording,
+              playing: true,
+              position: 0
+            }
+          })
       },
       [
         recording.timestamp

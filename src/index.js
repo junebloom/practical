@@ -17,11 +17,18 @@ const vdom = {
 
 // Initialize application state
 let state = {
-  playing: null,
-  recording: false,
-  mediaRecorder: null,
-  slices: [],
-  recordings: []
+  recordings: [],
+  recorder: {
+    mediaRecorder: null,
+    recording: false,
+    slices: []
+  },
+  player: {
+    current: null,
+    playing: false,
+    position: 0,
+    volume: 1
+  }
 }
 
 // Sets state and re-renders the DOM based on the diff from the previous vdom
