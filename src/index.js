@@ -1,6 +1,13 @@
 import { render } from './vdom'
 import App from './components/App'
 
+// Register the offline service worker
+if (navigator.serviceWorker) {
+  navigator.serviceWorker
+    .register('./offlineSW.js')
+    .catch(error => console.error('SW not registered', error))
+}
+
 // Persistent state for diffing vdom updates
 const vdom = {
   container: document.getElementById('app'),
