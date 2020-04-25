@@ -1,42 +1,52 @@
 import { h } from '../vdom'
+import PlaybackControls from './PlaybackControls'
 
+// Recordings list item
 const Recording = (state, setState, recording) =>
-  h('li', { className: 'd-flex' }, [
-    h(
-      'button',
-      {
-        className: 'button flex-grow text-left p-05',
-        onclick: () =>
-          setState({
-            ...state,
-            player: {
-              ...state.player,
-              current: recording,
-              playing: true,
-              position: 0
-            }
-          })
-      },
-      [
-        recording.timestamp
-          .toLocaleString(undefined, {
-            weekday: 'short',
-            hour: '2-digit',
-            minute: '2-digit',
-            second: '2-digit'
-          })
-          .toLowerCase()
-      ]
-    ),
-    h(
-      'a',
-      {
-        className: 'button button--dark p-05',
-        href: recording.url,
-        download: 'recording.webm'
-      },
-      ['save']
-    )
-  ])
+  h(
+    'li',
+    { className: 'd-flex' },
+    [
+      // Select button
+      // Loads the recording and begins playback
+      h(
+        'button',
+        {
+          className: 'button flex-grow text-left p-05',
+          onclick: () => {
+            state.player.src = recording.url
+            state.player.load()
+            state.player.play()
+
+            // Force a render
+            setState(state)
+          }
+        },
+        [
+          recording.timestamp
+            .toLocaleString(undefined, {
+              weekday: 'short',
+              hour: '2-digit',
+              minute: '2-digit',
+              second: '2-digit'
+            })
+            .toLowerCase()
+        ]
+      ),
+      // Download button
+      h(
+        'a',
+        {
+          className: 'button button--dark p-05',
+          href: recording.url,
+          download: 'recording.webm'
+        },
+        ['save']
+      ),
+      state.player.src === recording.url
+        ? PlaybackControls(state, setState)
+        : null
+    ].filter(child => child)
+  )
 
 export default Recording

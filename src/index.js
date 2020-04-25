@@ -23,12 +23,7 @@ let state = {
     recording: false,
     slices: []
   },
-  player: {
-    current: null,
-    playing: false,
-    position: 0,
-    volume: 1
-  }
+  player: new Audio()
 }
 
 // Sets state and re-renders the DOM based on the diff from the previous vdom
