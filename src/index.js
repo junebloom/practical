@@ -39,3 +39,6 @@ function setState(newState) {
 // Initialize the app UI
 vdom.current = App(state, setState)
 render(vdom.container, vdom.previous, vdom.current)
+
+// Re-render UI when audio playback finishes
+state.player.addEventListener('ended', () => setState(state))
