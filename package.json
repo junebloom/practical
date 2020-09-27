@@ -5,13 +5,10 @@
   "author": "June Bloom <june.a.bloom@gmail.com>",
   "license": "MIT",
   "private": true,
-  "browserslist": [
-    "last 2 versions and since 2018 and > 0.1% in US"
-  ],
   "scripts": {
     "start": "parcel src/index.html"
   },
   "devDependencies": {
-    "parcel-bundler": "^1.12.4"
+    "parcel": "^2.0.0-beta.1"
   }
 }
