@@ -2,7 +2,9 @@ import { createElement as h } from "react";
 import PlaybackControls from "./PlaybackControls";
 
 // Recordings list item
-function Recording({ player, recording }) {
+function Recording({ recording, player }) {
+  const isSelected = player.src === recording.url;
+
   return h(
     "li",
     { className: "d-flex flex-column" },
@@ -16,9 +18,8 @@ function Recording({ player, recording }) {
         {
           className: "button flex-grow text-left p-05",
           onClick: () => {
-            player.src = recording.url;
-            player.load();
-            player.play();
+            player.setSrc(recording.url);
+            player.setPlaying(true);
           },
         },
         recording.timestamp
@@ -41,7 +42,7 @@ function Recording({ player, recording }) {
         "save"
       )
     ),
-    player.src === recording.url && h(PlaybackControls, { player })
+    isSelected && h(PlaybackControls, { player })
   );
 }
 
