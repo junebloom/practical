@@ -1,4 +1,4 @@
-A zero-dependency progressive web app for quickly and easily practicing singing, music, speaking, etc.
+A progressive web app for quickly and easily practicing singing, music, speaking, etc.
 
 ## TODO
 
