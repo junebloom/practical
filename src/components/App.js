@@ -12,7 +12,7 @@ function App() {
     { className: "d-flex flex-column" },
     h(Recorder, { setRecordings }),
     h("h1", null, "recordings"),
-    h(RecordingsList, { recordings, player })
+    h(RecordingsList, { recordings, player: player.current })
   );
 }
 

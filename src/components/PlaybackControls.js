@@ -1,10 +1,9 @@
 import { createElement as h } from "react";
 
-function PlaybackControls({ state, setState }) {
+function PlaybackControls({ player }) {
   function togglePaused() {
-    if (state.player.paused) state.player.play();
-    else state.player.pause();
-    setState(state);
+    if (player.paused) player.play();
+    else player.pause();
   }
 
   return h(
@@ -14,11 +13,11 @@ function PlaybackControls({ state, setState }) {
     h(
       "button",
       { className: "button p-05", onClick: togglePaused },
-      state.player.paused ? "play" : "pause"
+      player.paused ? "play" : "pause"
     ),
 
     // Progress bar
-    h("div", { className: "flex-grow" }, `${state.player.currentTime}`),
+    h("div", { className: "flex-grow" }, `${player.currentTime}`),
 
     // Volume control
     h("div", {}, "volume")
