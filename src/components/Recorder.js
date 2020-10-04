@@ -1,7 +1,7 @@
-import { h } from '../vdom'
+import { createElement as h } from 'react'
 
 // UI component for recording user audio
-function Recorder(state, setState) {
+function Recorder({ state, setState }) {
   // Begins the recording
   async function start() {
     // Create the input stream from the user's microphone
@@ -21,7 +21,7 @@ function Recorder(state, setState) {
     })
 
     // Prepare the state for the new recording
-    state = setState({
+    const newState = {
       ...state,
       recorder: {
         ...state.recorder,
@@ -29,11 +29,13 @@ function Recorder(state, setState) {
         slices: [],
         recording: true
       }
-    })
+    }
+
+    setState(newState)
 
     // Store each chunk of recording data as it becomes available
     mediaRecorder.addEventListener('dataavailable', ({ data }) => {
-      state.recorder.slices.push(data)
+      newState.recorder.slices.push(data)
     })
 
     // Start the recording, outputting data every 15ms
@@ -59,7 +61,7 @@ function Recorder(state, setState) {
       }
 
       // Store the recording object in the app state for use elsewhere
-      state = setState({
+      setState({
         ...state,
         recorder: {
           ...state.recorder,
@@ -77,10 +79,10 @@ function Recorder(state, setState) {
   return h(
     'button',
     {
-      onclick: () => (state.recorder.recording ? stop() : start()),
+      onClick: state.recorder.recording ? stop : start,
       className: 'button button--record'
     },
-    [state.recorder.recording ? 'stop' : 'record']
+    state.recorder.recording ? 'stop' : 'record'
   )
 }
 

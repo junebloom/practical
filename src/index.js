@@ -1,4 +1,5 @@
-import { render } from './vdom'
+import { createElement as h } from 'react'
+import { render } from 'react-dom'
 import App from './components/App'
 
 // Register the offline service worker
@@ -8,37 +9,5 @@ if (navigator.serviceWorker) {
     .catch(error => console.error('SW not registered', error))
 }
 
-// Persistent state for diffing vdom updates
-const vdom = {
-  container: document.getElementById('app'),
-  current: null,
-  previous: null
-}
-
-// Initialize application state
-let state = {
-  recordings: [],
-  recorder: {
-    mediaRecorder: null,
-    recording: false,
-    slices: []
-  },
-  player: new Audio()
-}
-
-// Sets state and re-renders the DOM based on the diff from the previous vdom
-// and the current vdom
-function setState(newState) {
-  state = newState
-  vdom.previous = vdom.current
-  vdom.current = App(state, setState)
-  render(vdom.container, vdom.previous, vdom.current)
-  return state
-}
-
 // Initialize the app UI
-vdom.current = App(state, setState)
-render(vdom.container, vdom.previous, vdom.current)
-
-// Re-render UI when audio playback finishes
-state.player.addEventListener('ended', () => setState(state))
+render(h(App), document.getElementById('app'))

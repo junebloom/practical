@@ -1,24 +1,28 @@
-import { h } from '../vdom'
+import { createElement as h } from 'react'
 
-const PlaybackControls = (state, setState) =>
-  h('div', { className: 'd-flex' }, [
+function PlaybackControls({ state, setState }) {
+  function togglePaused() {
+    if (state.player.paused) state.player.play()
+    else state.player.pause()
+    setState(state)
+  }
+
+  return h(
+    'div',
+    { className: 'd-flex' },
     // Play button
     h(
       'button',
-      {
-        className: 'button p-05',
-        onclick: () => {
-          if (state.player.paused) state.player.play()
-          else state.player.pause()
-          setState(state)
-        }
-      },
-      [state.player.paused ? 'play' : 'pause']
+      { className: 'button p-05', onClick: togglePaused },
+      state.player.paused ? 'play' : 'pause'
     ),
+
     // Progress bar
-    h('div', { className: 'flex-grow' }, ['progress bar']),
+    h('div', { className: 'flex-grow' }, `${state.player.currentTime}`),
+
     // Volume control
-    h('div', {}, ['volume'])
-  ])
+    h('div', {}, 'volume')
+  )
+}
 
 export default PlaybackControls

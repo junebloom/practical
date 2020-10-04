@@ -1,13 +1,12 @@
-import { h } from '../vdom'
+import { createElement as h } from 'react'
 import Recording from './Recording'
 
-const RecordingsList = (state, setState) =>
-  h('section', {}, [
-    h(
-      'ol',
-      { className: 'recordings-list' },
-      state.recordings.map(recording => Recording(state, setState, recording))
-    )
-  ])
+function RecordingsList({ state, setState }) {
+  const recordings = state.recordings.map(recording =>
+    h(Recording, { state, setState, recording, key: recording.url })
+  )
+
+  return h('ol', { className: 'recordings-list' }, recordings)
+}
 
 export default RecordingsList
