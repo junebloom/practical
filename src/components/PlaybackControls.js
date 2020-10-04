@@ -1,28 +1,28 @@
-import { createElement as h } from 'react'
+import { createElement as h } from "react";
 
 function PlaybackControls({ state, setState }) {
   function togglePaused() {
-    if (state.player.paused) state.player.play()
-    else state.player.pause()
-    setState(state)
+    if (state.player.paused) state.player.play();
+    else state.player.pause();
+    setState(state);
   }
 
   return h(
-    'div',
-    { className: 'd-flex' },
+    "div",
+    { className: "d-flex" },
     // Play button
     h(
-      'button',
-      { className: 'button p-05', onClick: togglePaused },
-      state.player.paused ? 'play' : 'pause'
+      "button",
+      { className: "button p-05", onClick: togglePaused },
+      state.player.paused ? "play" : "pause"
     ),
 
     // Progress bar
-    h('div', { className: 'flex-grow' }, `${state.player.currentTime}`),
+    h("div", { className: "flex-grow" }, `${state.player.currentTime}`),
 
     // Volume control
-    h('div', {}, 'volume')
-  )
+    h("div", {}, "volume")
+  );
 }
 
-export default PlaybackControls
+export default PlaybackControls;

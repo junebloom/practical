@@ -1,7 +1,7 @@
-import { createElement as h, useState } from 'react'
+import { createElement as h, useState } from "react";
 
-import Recorder from './Recorder'
-import RecordingsList from './RecordingsList'
+import Recorder from "./Recorder";
+import RecordingsList from "./RecordingsList";
 
 function App() {
   const [state, setState] = useState({
@@ -9,19 +9,19 @@ function App() {
     recorder: {
       mediaRecorder: null,
       recording: false,
-      slices: []
+      slices: [],
     },
     player: new Audio(),
-    playerRAFId: null
-  })
+    playerRAFId: null,
+  });
 
   return h(
-    'main',
-    { className: 'd-flex flex-column' },
+    "main",
+    { className: "d-flex flex-column" },
     h(Recorder, { state, setState }),
-    h('h1', null, 'recordings'),
+    h("h1", null, "recordings"),
     h(RecordingsList, { state, setState })
-  )
+  );
 }
 
-export default App
+export default App;
