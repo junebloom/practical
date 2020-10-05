@@ -17,6 +17,8 @@ function Recorder({ setRecordings }) {
           sampleRate: 48000,
         },
       });
+
+      // Use the stream to create a MediaRecorder
       recorder.current = new MediaRecorder(stream, {
         mimeType: "audio/webm",
         audioBitsPerSecond: 256000,
