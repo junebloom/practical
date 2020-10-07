@@ -3,7 +3,7 @@ import PlaybackControls from "./PlaybackControls";
 
 // Recordings list item
 function Recording({ recording, player }) {
-  const isSelected = player.src === recording.url;
+  const isSelected = player.src === recording;
 
   return h(
     "li",
@@ -18,7 +18,7 @@ function Recording({ recording, player }) {
         {
           className: "button flex-grow text-left p-05",
           onClick: () => {
-            player.setSrc(recording.url);
+            player.setSrc(recording);
             player.setPlaying(true);
           },
         },

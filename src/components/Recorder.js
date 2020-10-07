@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect, createElement as h } from "react";
 
 // UI component for recording user audio
-function Recorder({ setRecordings }) {
+function Recorder({ setRecordings, ctx }) {
   const [isRecording, setIsRecording] = useState(false);
   const slices = useRef([]);
   const recorder = useRef();
@@ -30,14 +30,15 @@ function Recorder({ setRecordings }) {
       });
 
       // Handle the end of the recording
-      recorder.current.addEventListener("stop", () => {
+      recorder.current.addEventListener("stop", async () => {
         // Join the chunks of partial data together into the final recording
         const blob = new Blob(slices.current, { type: slices.current[0].type });
 
         // Create an object with the recording data and metadata
         const recording = {
-          url: URL.createObjectURL(blob),
           timestamp: new Date(),
+          buffer: await ctx.decodeAudioData(await blob.arrayBuffer()),
+          url: URL.createObjectURL(blob),
           blob,
         };
 
@@ -51,7 +52,7 @@ function Recorder({ setRecordings }) {
   // Starts recording
   function start() {
     slices.current = [];
-    recorder.current.start(15);
+    recorder.current.start();
     setIsRecording(true);
   }
 

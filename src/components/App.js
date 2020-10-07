@@ -4,47 +4,50 @@ import Recorder from "./Recorder";
 import RecordingsList from "./RecordingsList";
 
 function usePlayer() {
-  const audio = useRef(new Audio());
+  const ctx = useRef(new AudioContext());
   const [src, setSrc] = useState(null);
   const [playing, setPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
 
+  // src set
   useEffect(() => {
-    const handleEnded = () => setPlaying(false);
-    const handleTimeupdate = () => setCurrentTime(audio.current.currentTime);
-    const handleDurationchange = () => setDuration(audio.current.duration);
+    if (src === null) return;
+    setCurrentTime(0);
+    setDuration(src.buffer.duration);
+  }, [src]);
 
-    audio.current.addEventListener("ended", handleEnded);
-    audio.current.addEventListener("timeupdate", handleTimeupdate);
-    audio.current.addEventListener("durationchange", handleDurationchange);
+  // playing set
+  useEffect(() => {
+    if (src === null) return;
+    const srcNode = ctx.current.createBufferSource();
+
+    if (playing) {
+      srcNode.buffer = src.buffer;
+      srcNode.connect(ctx.current.destination);
+      srcNode.onended = () => {
+        setPlaying(false);
+      };
+      srcNode.start();
+    }
 
     return () => {
-      audio.current.removeEventListener("ended", handleEnded);
-      audio.current.removeEventListener("timeupdate", handleTimeupdate);
-      audio.current.removeEventListener("durationchange", handleDurationchange);
+      srcNode.onended = null;
+      srcNode.disconnect();
+      if (playing) srcNode.stop();
     };
-  });
+  }, [src, playing, duration]);
 
+  // Return the public interface for the player
   return {
     src,
-    setSrc: (url) => {
-      setSrc(url);
-      audio.current.src = url;
-      audio.current.load();
-    },
+    setSrc,
     playing,
-    setPlaying: (isPlaying) => {
-      setPlaying(isPlaying);
-      if (isPlaying) audio.current.play();
-      else audio.current.pause();
-    },
+    setPlaying,
     currentTime,
-    setCurrentTime: (time) => {
-      setCurrentTime(time);
-      audio.current.currentTime = time;
-    },
+    setCurrentTime,
     duration,
+    ctx,
   };
 }
 
@@ -55,7 +58,7 @@ function App() {
   return h(
     "main",
     { className: "d-flex flex-column" },
-    h(Recorder, { setRecordings }),
+    h(Recorder, { setRecordings, ctx: player.ctx.current }),
     h("h1", null, "recordings"),
     h(RecordingsList, { recordings, player })
   );
