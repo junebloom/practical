@@ -4,50 +4,54 @@ import Recorder from "./Recorder";
 import RecordingsList from "./RecordingsList";
 
 function usePlayer() {
-  const ctx = useRef(new AudioContext());
+  const audio = useRef(new Audio());
   const [src, setSrc] = useState(null);
   const [playing, setPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
 
-  // src set
   useEffect(() => {
-    if (src === null) return;
-    setCurrentTime(0);
-    setDuration(src.buffer.duration);
-  }, [src]);
+    audio.current.addEventListener("loadstart", () => {
+      setSrc(audio.current.src);
+    });
+    audio.current.addEventListener("play", () => {
+      setPlaying(!audio.current.paused);
+    });
+    audio.current.addEventListener("pause", () => {
+      setPlaying(!audio.current.paused);
+    });
+    audio.current.addEventListener("timeupdate", () => {
+      setCurrentTime(audio.current.currentTime);
+    });
+    audio.current.addEventListener("durationchange", () => {
+      setDuration(audio.current.duration);
+    });
+  }, []);
 
-  // playing set
-  useEffect(() => {
-    if (src === null) return;
-    const srcNode = ctx.current.createBufferSource();
-
-    if (playing) {
-      srcNode.buffer = src.buffer;
-      srcNode.connect(ctx.current.destination);
-      srcNode.onended = () => {
-        setPlaying(false);
-      };
-      srcNode.start();
-    }
-
-    return () => {
-      srcNode.onended = null;
-      srcNode.disconnect();
-      if (playing) srcNode.stop();
-    };
-  }, [src, playing, duration]);
+  function load(recording) {
+    audio.current.src = recording.url;
+    audio.current.load();
+  }
+  function play() {
+    audio.current.play();
+  }
+  function pause() {
+    audio.current.pause();
+  }
+  function seek(time) {
+    audio.current.currentTime = time;
+  }
 
   // Return the public interface for the player
   return {
     src,
-    setSrc,
     playing,
-    setPlaying,
     currentTime,
-    setCurrentTime,
     duration,
-    ctx,
+    load,
+    play,
+    pause,
+    seek,
   };
 }
 
@@ -58,7 +62,7 @@ function App() {
   return h(
     "main",
     { className: "d-flex flex-column" },
-    h(Recorder, { setRecordings, ctx: player.ctx.current }),
+    h(Recorder, { setRecordings }),
     h("h1", null, "recordings"),
     h(RecordingsList, { recordings, player })
   );

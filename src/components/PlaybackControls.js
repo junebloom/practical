@@ -10,7 +10,7 @@ function PlaybackControls({ player }) {
       "button",
       {
         className: "button p-05",
-        onClick: () => player.setPlaying(!player.playing),
+        onClick: () => (player.playing ? player.pause() : player.play()),
       },
       player.playing ? "pause" : "play"
     ),
@@ -25,7 +25,7 @@ function PlaybackControls({ player }) {
           const { left } = e.target.getBoundingClientRect();
           const position = (e.clientX - left) / e.target.clientWidth;
 
-          player.setCurrentTime(player.duration * position);
+          player.seek(player.duration * position);
         },
       },
       player.currentTime

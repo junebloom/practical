@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect, createElement as h } from "react";
 
 // UI component for recording user audio
-function Recorder({ setRecordings, ctx }) {
+function Recorder({ setRecordings }) {
   const [isRecording, setIsRecording] = useState(false);
   const slices = useRef([]);
   const recorder = useRef();
@@ -20,7 +20,7 @@ function Recorder({ setRecordings, ctx }) {
 
       // Use the stream to create a MediaRecorder
       recorder.current = new MediaRecorder(stream, {
-        mimeType: "audio/webm",
+        mimeType: "audio/ogg",
         audioBitsPerSecond: 256000,
       });
 
@@ -30,14 +30,13 @@ function Recorder({ setRecordings, ctx }) {
       });
 
       // Handle the end of the recording
-      recorder.current.addEventListener("stop", async () => {
+      recorder.current.addEventListener("stop", () => {
         // Join the chunks of partial data together into the final recording
         const blob = new Blob(slices.current, { type: slices.current[0].type });
 
         // Create an object with the recording data and metadata
         const recording = {
           timestamp: new Date(),
-          buffer: await ctx.decodeAudioData(await blob.arrayBuffer()),
           url: URL.createObjectURL(blob),
           blob,
         };
