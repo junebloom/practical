@@ -17,12 +17,16 @@ function getClickedPosition(e) {
 function ProgressBar({ player }) {
   const fmt = {
     current: {
-      minutes: (player.currentTime / 60).toFixed(),
-      seconds: (player.currentTime % 60).toFixed().padStart(2, "0"),
+      minutes: Math.trunc(player.currentTime / 60),
+      seconds: Math.trunc(player.currentTime % 60)
+        .toString()
+        .padStart(2, "0"),
     },
     duration: {
-      minutes: (player.duration / 60).toFixed(),
-      seconds: (player.duration % 60).toFixed().padStart(2, "0"),
+      minutes: Math.trunc(player.duration / 60),
+      seconds: Math.trunc(player.duration % 60)
+        .toString()
+        .padStart(2, "0"),
     },
   };
 
