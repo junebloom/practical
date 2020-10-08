@@ -2,7 +2,6 @@ A progressive web app for quickly and easily practicing singing, music, speaking
 
 ## TODO
 
-- icons
 - persistence
 - better slider dragging
 - kb control
