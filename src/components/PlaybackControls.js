@@ -7,35 +7,33 @@ import {
   MdVolumeUp,
 } from "react-icons/md";
 
-function getClickedPosition(e) {
-  // Normalize the clicked position between [0,1]
-  const { left } = e.currentTarget.getBoundingClientRect();
-  const position = (e.clientX - left) / e.currentTarget.clientWidth;
-  return position;
+// Get where the client coordinate `x` lies within `element`
+// The returned value is normalized between [0,1]
+function getPosition(x, element) {
+  const { left } = element.getBoundingClientRect();
+  const position = (x - left) / element.clientWidth;
+  return Math.min(Math.max(0, position), 1);
+}
+
+function padTime(t) {
+  return t.toString().padStart(2, "0");
+}
+
+// Convert `t` seconds to a string format suitable for playback UI
+function formatTime(t) {
+  const h = Math.trunc(t / 60 / 60);
+  const m = Math.trunc((t / 60) % 60);
+  const s = Math.trunc(t % 60);
+  return `${h ? h + ":" : ""}${h ? padTime(m) : m}:${padTime(s)}`;
 }
 
 function ProgressBar({ player }) {
-  const fmt = {
-    current: {
-      minutes: Math.trunc(player.currentTime / 60),
-      seconds: Math.trunc(player.currentTime % 60)
-        .toString()
-        .padStart(2, "0"),
-    },
-    duration: {
-      minutes: Math.trunc(player.duration / 60),
-      seconds: Math.trunc(player.duration % 60)
-        .toString()
-        .padStart(2, "0"),
-    },
-  };
-
   return h(
     "div",
     {
       className: "pos-relative flex-grow cursor-pointer",
       onClick: (e) => {
-        player.seek(player.duration * getClickedPosition(e));
+        player.seek(player.duration * getPosition(e.clientX, e.currentTarget));
       },
     },
     // Bar background
@@ -51,8 +49,8 @@ function ProgressBar({ player }) {
     h(
       "div",
       { className: "flex-grow d-flex justify-between p-05" },
-      h("div", {}, `${fmt.current.minutes}:${fmt.current.seconds}`),
-      h("div", {}, `${fmt.duration.minutes}:${fmt.duration.seconds}`)
+      h("div", {}, formatTime(player.currentTime)),
+      h("div", {}, formatTime(player.duration))
     )
   );
 }
@@ -63,7 +61,7 @@ function VolumeSlider({ player }) {
     {
       className: "pos-relative w-4 cursor-pointer",
       onClick: (e) => {
-        player.setVolume(getClickedPosition(e));
+        player.setVolume(getPosition(e.clientX, e.currentTarget));
       },
     },
     // Bar background
