@@ -66,7 +66,7 @@ function Recorder({ setRecordings }) {
     "button",
     {
       onClick: isRecording ? stop : start,
-      className: "button button--record d-flex justify-center align-center",
+      className: "button button--record d-flex justify-center",
     },
     h(isRecording ? MdStop : MdMic)
   );

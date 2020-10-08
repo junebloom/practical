@@ -1,4 +1,7 @@
 /* Document styles */
+* {
+  box-sizing: border-box;
+}
 html {
   --color-primary: hsl(204, 72%, 74%);
   --color-red: hsl(0, 100%, 76%);
@@ -17,10 +20,6 @@ body {
   max-width: 600px;
   margin: 0 auto;
   padding: 1em;
-}
-
-* {
-  box-sizing: border-box;
 }
 
 /* Component styles */
@@ -74,23 +73,19 @@ body {
 .bg-lighter {
   background: var(--color-lighter);
 }
-.bg-shadow {
-  background: var(--color-shadow);
-}
-
 .shadow {
   border-bottom: 2px solid var(--color-shadow);
 }
 
 /* Text utilities */
+.text-light {
+  color: var(--color-light);
+}
 .text-left {
   text-align: left;
 }
 .text-center {
   text-align: center;
-}
-.text-light {
-  color: var(--color-light);
 }
 
 /* Flex utilities */
@@ -123,23 +118,17 @@ body {
 .bottom-0 {
   bottom: 0;
 }
-.p-0 {
-  padding: 0;
-}
 .p-1 {
   padding: 1em;
 }
 .p-05 {
   padding: 0.5em;
 }
-.mv-auto {
-  margin: auto inherit;
+.p-0 {
+  padding: 0;
 }
 .w-full {
   width: 100%;
-}
-.w-3 {
-  width: 3em;
 }
 .w-4 {
   width: 4em;

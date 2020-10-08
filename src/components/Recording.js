@@ -37,7 +37,7 @@ function Recording({ recording, player }) {
       h(
         "a",
         {
-          className: "button p-05 d-flex justify-center align-center w-4",
+          className: "button w-4 p-05 d-flex justify-center",
           href: recording.url,
           download: "recording.ogg",
         },

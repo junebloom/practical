@@ -29,18 +29,18 @@ function ProgressBar({ player }) {
   return h(
     "div",
     {
-      className: "pos-relative flex-grow bg-dark cursor-pointer text-light",
+      className: "pos-relative flex-grow cursor-pointer",
       onClick: (e) => {
         player.seek(player.duration * getClickedPosition(e));
       },
     },
     // Bar background
     h("div", {
-      className: "pos-absolute bg-dark-red w-full h-05 bottom-0",
+      className: "pos-absolute w-full h-05 bottom-0 bg-dark-red",
     }),
     // Bar foreground
     h("div", {
-      className: "pos-absolute bg-red shadow h-05 bottom-0",
+      className: "pos-absolute h-05 bottom-0 bg-red shadow",
       style: { width: `${(player.currentTime / player.duration) * 100}%` },
     }),
     // Text container
@@ -57,25 +57,25 @@ function VolumeSlider({ player }) {
   return h(
     "div",
     {
-      className: "pos-relative w-4 bg-dark cursor-pointer",
+      className: "pos-relative w-4 cursor-pointer",
       onClick: (e) => {
         player.setVolume(getClickedPosition(e));
       },
     },
     // Bar background
     h("div", {
-      className: "pos-absolute bg-dark-primary w-full h-05 bottom-0",
+      className: "pos-absolute w-full h-05 bottom-0 bg-dark-primary",
     }),
     // Bar foreground
     h("div", {
-      className: "pos-absolute bg-primary shadow h-05 bottom-0",
+      className: "pos-absolute h-05 bottom-0 bg-primary shadow",
       style: { width: `${player.volume * 100}%` },
     }),
     // Icon container
     h(
       "div",
       {
-        className: "text-light p-05 d-flex justify-center align-center",
+        className: "p-05 d-flex justify-center",
       },
       h(
         player.volume > 0.33
@@ -91,13 +91,12 @@ function VolumeSlider({ player }) {
 function PlaybackControls({ player }) {
   return h(
     "div",
-    { className: "d-flex" },
+    { className: "d-flex bg-dark text-light" },
     // Play button
     h(
       "button",
       {
-        className:
-          "button button--dark p-05 d-flex justify-center align-center w-4",
+        className: "button button--dark w-4 p-05 d-flex justify-center",
         onClick: () => (player.playing ? player.pause() : player.play()),
       },
       h(player.playing ? MdPause : MdPlayArrow)
