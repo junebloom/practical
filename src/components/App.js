@@ -9,6 +9,7 @@ function usePlayer() {
   const [playing, setPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [volume, setVolume] = useState(1);
 
   useEffect(() => {
     audio.current.addEventListener("loadstart", () => {
@@ -27,21 +28,10 @@ function usePlayer() {
     audio.current.addEventListener("durationchange", () => {
       setDuration(audio.current.duration);
     });
+    audio.current.addEventListener("volumechange", () => {
+      setVolume(audio.current.volume);
+    });
   }, []);
-
-  function load(recording) {
-    audio.current.src = recording.url;
-    audio.current.load();
-  }
-  function play() {
-    audio.current.play();
-  }
-  function pause() {
-    audio.current.pause();
-  }
-  function seek(time) {
-    audio.current.currentTime = time;
-  }
 
   // Return the public interface for the player
   return {
@@ -49,10 +39,23 @@ function usePlayer() {
     playing,
     currentTime,
     duration,
-    load,
-    play,
-    pause,
-    seek,
+    volume,
+    load: (recording) => {
+      audio.current.src = recording.url;
+      audio.current.load();
+    },
+    play: () => {
+      audio.current.play();
+    },
+    pause: () => {
+      audio.current.pause();
+    },
+    seek: (time) => {
+      audio.current.currentTime = time;
+    },
+    setVolume: (value) => {
+      audio.current.volume = value;
+    },
   };
 }
 
