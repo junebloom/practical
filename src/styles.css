@@ -17,6 +17,10 @@ body {
   padding: 1em;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 /* Component styles */
 .button {
   align-self: stretch;
@@ -47,6 +51,24 @@ body {
   flex-direction: column;
   row-gap: 0.5em;
   list-style: none;
+}
+.progress-bar {
+  position: relative;
+  flex-grow: 1;
+  cursor: pointer;
+}
+.progress-bar__fg {
+  position: absolute;
+  background: var(--color-primary);
+  border-bottom: 2px solid var(--color-shadow);
+  height: 100%;
+}
+.progress-bar__text-container {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 1;
+  padding: 0.5em;
 }
 
 /* Color utilities */
