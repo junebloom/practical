@@ -6,37 +6,37 @@ import RecordingsList from "./RecordingsList";
 
 function usePlayer() {
   const audio = useRef(new Audio());
-  const [src, setSrc] = useState(null);
+  const [selected, setSelected] = useState(null);
   const [playing, setPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [volume, setVolume] = useState(1);
 
   useEffect(() => {
-    audio.current.addEventListener("loadstart", () => {
-      setSrc(audio.current.src);
-      setCurrentTime(0);
-    });
-    audio.current.addEventListener("play", () => {
+    audio.current.onplay = () => {
       setPlaying(!audio.current.paused);
-    });
-    audio.current.addEventListener("pause", () => {
+    };
+    audio.current.onpause = () => {
       setPlaying(!audio.current.paused);
-    });
-    audio.current.addEventListener("timeupdate", () => {
+    };
+    audio.current.ontimeupdate = () => {
       setCurrentTime(audio.current.currentTime);
-    });
-    audio.current.addEventListener("durationchange", () => {
-      setDuration(audio.current.duration);
-    });
-    audio.current.addEventListener("volumechange", () => {
+    };
+    audio.current.ondurationchange = () => {
+      // Update the duration estimated at record-time with the actual duration
+      const current = audio.current.duration;
+      if (current && current < Infinity) selected.duration = current;
+      // And sync the player state
+      setDuration(selected.duration);
+    };
+    audio.current.onvolumechange = () => {
       setVolume(audio.current.volume);
-    });
-  }, []);
+    };
+  }, [selected]);
 
   // Return the public interface for the player
   return {
-    src,
+    selected,
     playing,
     currentTime,
     duration,
@@ -44,6 +44,9 @@ function usePlayer() {
     load: (recording) => {
       audio.current.src = recording.url;
       audio.current.load();
+      setSelected(recording);
+      setCurrentTime(0);
+      setDuration(recording.duration);
     },
     play: () => {
       audio.current.play();

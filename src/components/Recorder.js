@@ -6,6 +6,7 @@ function Recorder({ setRecordings }) {
   const [isRecording, setIsRecording] = useState(false);
   const slices = useRef([]);
   const recorder = useRef();
+  const startTime = useRef();
 
   useEffect(() => {
     async function setupRecorder() {
@@ -29,6 +30,11 @@ function Recorder({ setRecordings }) {
         audioBitsPerSecond: 128000,
       });
 
+      // Track the start time so we can estimate the duration metadata
+      recorder.current.addEventListener("start", () => {
+        startTime.current = performance.now();
+      });
+
       // Store each chunk of recording data as it becomes available
       recorder.current.addEventListener("dataavailable", ({ data }) => {
         slices.current.push(data);
@@ -41,6 +47,7 @@ function Recorder({ setRecordings }) {
 
         // Create an object with the recording data and metadata
         const recording = {
+          duration: (performance.now() - startTime.current) / 1000,
           timestamp: new Date(),
           url: URL.createObjectURL(blob),
           blob,

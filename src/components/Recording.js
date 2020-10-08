@@ -5,7 +5,7 @@ import PlaybackControls from "./PlaybackControls";
 
 // Recordings list item
 function Recording({ recording, player }) {
-  const isSelected = player.src === recording.url;
+  const isSelected = player.selected === recording;
 
   return h(
     "li",
