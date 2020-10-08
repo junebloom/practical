@@ -52,33 +52,37 @@ body {
   row-gap: 0.5em;
   list-style: none;
 }
-.progress-bar {
-  position: relative;
-  flex-grow: 1;
-  cursor: pointer;
-}
-.progress-bar__fg {
-  position: absolute;
-  background: var(--color-primary);
-  border-bottom: 2px solid var(--color-shadow);
-  height: 100%;
-}
-.progress-bar__text-container {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  flex-grow: 1;
-  padding: 0.5em;
-}
 
 /* Color utilities */
+.bg-primary {
+  background: var(--color-primary);
+}
+.bg-red {
+  background: var(--color-red);
+}
+.bg-dark {
+  background: var(--color-dark);
+}
 .bg-lighter {
   background: var(--color-lighter);
+}
+.bg-shadow {
+  background: var(--color-shadow);
+}
+
+.shadow {
+  border-bottom: 2px solid var(--color-shadow);
 }
 
 /* Text utilities */
 .text-left {
   text-align: left;
+}
+.text-center {
+  text-align: center;
+}
+.text-light {
+  color: var(--color-light);
 }
 
 /* Flex utilities */
@@ -91,11 +95,40 @@ body {
 .flex-grow {
   flex-grow: 1;
 }
+.justify-between {
+  justify-content: space-between;
+}
 
 /* Box utilities */
+.pos-relative {
+  position: relative;
+}
+.pos-absolute {
+  position: absolute;
+}
+.bottom-0 {
+  bottom: 0;
+}
 .p-1 {
   padding: 1em;
 }
 .p-05 {
   padding: 0.5em;
+}
+.mv-auto {
+  margin: auto inherit;
+}
+.w-4 {
+  width: 4em;
+}
+.h-full {
+  height: 100%;
+}
+.h-05 {
+  height: 0.5em;
+}
+
+/* Misc. utilities */
+.cursor-pointer {
+  cursor: pointer;
 }
