@@ -35,7 +35,7 @@ function Recording({ recording, player }) {
       h(
         "a",
         {
-          className: "button button--dark p-05",
+          className: "button p-05 w-4 text-center",
           href: recording.url,
           download: "recording.webm",
         },
