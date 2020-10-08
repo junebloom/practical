@@ -37,7 +37,7 @@ function Recording({ recording, player }) {
         {
           className: "button p-05 w-4 text-center",
           href: recording.url,
-          download: "recording.webm",
+          download: "recording.ogg",
         },
         "save"
       )
