@@ -13,6 +13,7 @@ function usePlayer() {
   useEffect(() => {
     audio.current.addEventListener("loadstart", () => {
       setSrc(audio.current.src);
+      setCurrentTime(0);
     });
     audio.current.addEventListener("play", () => {
       setPlaying(!audio.current.paused);
