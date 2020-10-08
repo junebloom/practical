@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect, createElement as h } from "react";
+import { MdMic, MdStop } from "react-icons/md";
 
 // UI component for recording user audio
 function Recorder({ setRecordings }) {
@@ -65,9 +66,9 @@ function Recorder({ setRecordings }) {
     "button",
     {
       onClick: isRecording ? stop : start,
-      className: "button button--record",
+      className: "button button--record d-flex justify-center align-center",
     },
-    isRecording ? "stop" : "record"
+    h(isRecording ? MdStop : MdMic)
   );
 }
 

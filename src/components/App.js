@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect, createElement as h } from "react";
+import { IconContext } from "react-icons";
 
 import Recorder from "./Recorder";
 import RecordingsList from "./RecordingsList";
@@ -66,9 +67,13 @@ function App() {
   return h(
     "main",
     { className: "d-flex flex-column" },
-    h(Recorder, { setRecordings }),
-    h("h1", null, "recordings"),
-    h(RecordingsList, { recordings, player })
+    h(
+      IconContext.Provider,
+      { value: { size: "1.25em" } },
+      h(Recorder, { setRecordings }),
+      h("h1", null, "recordings"),
+      h(RecordingsList, { recordings, player })
+    )
   );
 }
 

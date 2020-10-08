@@ -1,4 +1,6 @@
 import { createElement as h } from "react";
+import { MdFileDownload } from "react-icons/md";
+
 import PlaybackControls from "./PlaybackControls";
 
 // Recordings list item
@@ -35,11 +37,11 @@ function Recording({ recording, player }) {
       h(
         "a",
         {
-          className: "button p-05 w-4 text-center",
+          className: "button p-05 d-flex justify-center align-center w-4",
           href: recording.url,
           download: "recording.ogg",
         },
-        "save"
+        h(MdFileDownload)
       )
     ),
     isSelected && h(PlaybackControls, { player })

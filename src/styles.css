@@ -106,6 +106,12 @@ body {
 .justify-between {
   justify-content: space-between;
 }
+.justify-center {
+  justify-content: center;
+}
+.align-center {
+  align-items: center;
+}
 
 /* Box utilities */
 .pos-relative {
@@ -116,6 +122,9 @@ body {
 }
 .bottom-0 {
   bottom: 0;
+}
+.p-0 {
+  padding: 0;
 }
 .p-1 {
   padding: 1em;
@@ -128,6 +137,9 @@ body {
 }
 .w-full {
   width: 100%;
+}
+.w-3 {
+  width: 3em;
 }
 .w-4 {
   width: 4em;
