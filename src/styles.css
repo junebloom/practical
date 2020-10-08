@@ -2,6 +2,8 @@
 html {
   --color-primary: hsl(204, 72%, 74%);
   --color-red: hsl(0, 100%, 76%);
+  --color-dark-primary: hsl(204, 37%, 49%);
+  --color-dark-red: hsl(0, 39%, 50%);
   --color-dark: hsl(0, 0%, 30%);
   --color-light: hsl(0, 0%, 93%);
   --color-lighter: hsl(0, 0%, 98%);
@@ -60,6 +62,12 @@ body {
 .bg-red {
   background: var(--color-red);
 }
+.bg-dark-primary {
+  background: var(--color-dark-primary);
+}
+.bg-dark-red {
+  background: var(--color-dark-red);
+}
 .bg-dark {
   background: var(--color-dark);
 }
@@ -117,6 +125,9 @@ body {
 }
 .mv-auto {
   margin: auto inherit;
+}
+.w-full {
+  width: 100%;
 }
 .w-4 {
   width: 4em;

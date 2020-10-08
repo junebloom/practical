@@ -27,10 +27,16 @@ function ProgressBar({ player }) {
         player.seek(player.duration * getClickedPosition(e));
       },
     },
+    // Bar background
+    h("div", {
+      className: "pos-absolute bg-dark-red w-full h-05 bottom-0",
+    }),
+    // Bar foreground
     h("div", {
       className: "pos-absolute bg-red shadow h-05 bottom-0",
       style: { width: `${(player.currentTime / player.duration) * 100}%` },
     }),
+    // Text container
     h(
       "div",
       { className: "pos-relative flex-grow d-flex justify-between p-05" },
@@ -49,10 +55,16 @@ function VolumeSlider({ player }) {
         player.setVolume(getClickedPosition(e));
       },
     },
+    // Bar background
+    h("div", {
+      className: "pos-absolute bg-dark-primary w-full h-05 bottom-0",
+    }),
+    // Bar foreground
     h("div", {
       className: "pos-absolute bg-primary shadow h-05 bottom-0",
       style: { width: `${player.volume * 100}%` },
     }),
+    // Text container
     h(
       "div",
       { className: "pos-relative p-05 text-center text-light" },
