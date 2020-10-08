@@ -19,10 +19,14 @@ function Recorder({ setRecordings }) {
         },
       });
 
+      let type = MediaRecorder.isTypeSupported("audio/ogg")
+        ? "audio/ogg"
+        : "audio/webm";
+
       // Use the stream to create a MediaRecorder
       recorder.current = new MediaRecorder(stream, {
-        mimeType: "audio/ogg",
-        audioBitsPerSecond: 256000,
+        mimeType: type,
+        audioBitsPerSecond: 128000,
       });
 
       // Store each chunk of recording data as it becomes available
