@@ -1,4 +1,5 @@
-import { useState, createElement as h } from "react";
+import { createElement as h } from "react";
+import useRecordings from "../hooks/useRecordings.js";
 import usePlayer from "../hooks/usePlayer.js";
 
 import { IconContext } from "react-icons";
@@ -6,7 +7,7 @@ import Recorder from "./Recorder";
 import RecordingsList from "./RecordingsList";
 
 function App() {
-  const [recordings, setRecordings] = useState([]);
+  const { recordings, addRecording } = useRecordings();
   const player = usePlayer();
 
   return h(
@@ -15,7 +16,7 @@ function App() {
     h(
       IconContext.Provider,
       { value: { size: "1.25em" } },
-      h(Recorder, { setRecordings }),
+      h(Recorder, { addRecording }),
       h("h1", null, "recordings"),
       h(RecordingsList, { recordings, player })
     )

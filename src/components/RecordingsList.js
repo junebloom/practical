@@ -6,7 +6,7 @@ function RecordingsList({ recordings, player }) {
     "ol",
     { className: "recordings-list" },
     recordings.map((recording) =>
-      h(Recording, { recording, player, key: recording.url })
+      h(Recording, { recording, player, key: recording.id })
     )
   );
 }

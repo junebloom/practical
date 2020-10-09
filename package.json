@@ -12,6 +12,7 @@
     "parcel": "^2.0.0-beta.1"
   },
   "dependencies": {
+    "idb": "^5.0.7",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-icons": "^3.11.0"

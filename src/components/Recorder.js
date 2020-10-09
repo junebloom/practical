@@ -2,7 +2,7 @@ import { useRef, useState, useEffect, createElement as h } from "react";
 import { MdMic, MdStop } from "react-icons/md";
 
 // UI component for recording user audio
-function Recorder({ setRecordings }) {
+function Recorder({ addRecording }) {
   const [isRecording, setIsRecording] = useState(false);
   const slices = useRef([]);
   const recorder = useRef();
@@ -49,12 +49,11 @@ function Recorder({ setRecordings }) {
         const recording = {
           duration: (performance.now() - startTime.current) / 1000,
           timestamp: new Date(),
-          url: URL.createObjectURL(blob),
           blob,
         };
 
-        // Store the recording object in the app state for use elsewhere
-        setRecordings((recordings) => [recording, ...recordings]);
+        // Store the recording object for use elsewhere
+        addRecording(recording);
       });
     }
     setupRecorder();
