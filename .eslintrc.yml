@@ -1,12 +1,7 @@
 extends:
   - eslint:recommended
-  - plugin:react/recommended
 parserOptions:
   sourceType: module
-  ecmaFeatures:
-    jsx: true
 env:
   es2020: true
   browser: true
-plugins:
-  - react
