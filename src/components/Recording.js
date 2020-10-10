@@ -1,10 +1,10 @@
 import { createElement as h } from "react";
-import { MdFileDownload } from "react-icons/md";
+import { MdClose, MdFileDownload } from "react-icons/md";
 
 import PlaybackControls from "./PlaybackControls";
 
 // Recordings list item
-function Recording({ recording, player }) {
+function Recording({ recording, player, deleteRecording }) {
   const isSelected = player.selected === recording;
 
   return h(
@@ -42,6 +42,18 @@ function Recording({ recording, player }) {
           download: "recording.ogg",
         },
         h(MdFileDownload)
+      ),
+      // Delete button
+      h(
+        "button",
+        {
+          className: "button w-4 p-05 d-flex justify-center",
+          onClick: () => {
+            deleteRecording(recording);
+            if (isSelected) player.reset();
+          },
+        },
+        h(MdClose)
       )
     ),
     isSelected && h(PlaybackControls, { player })

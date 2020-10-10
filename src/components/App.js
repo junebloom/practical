@@ -7,7 +7,7 @@ import Recorder from "./Recorder";
 import RecordingsList from "./RecordingsList";
 
 function App() {
-  const { recordings, addRecording } = useRecordings();
+  const { recordings, addRecording, deleteRecording } = useRecordings();
   const player = usePlayer();
 
   return h(
@@ -18,7 +18,7 @@ function App() {
       { value: { size: "1.25em" } },
       h(Recorder, { addRecording }),
       h("h1", null, "recordings"),
-      h(RecordingsList, { recordings, player })
+      h(RecordingsList, { recordings, player, deleteRecording })
     )
   );
 }

@@ -1,12 +1,12 @@
 import { createElement as h } from "react";
 import Recording from "./Recording";
 
-function RecordingsList({ recordings, player }) {
+function RecordingsList({ recordings, player, deleteRecording }) {
   return h(
     "ol",
     { className: "recordings-list" },
     recordings.map((recording) =>
-      h(Recording, { recording, player, key: recording.id })
+      h(Recording, { recording, player, deleteRecording, key: recording.id })
     )
   );
 }

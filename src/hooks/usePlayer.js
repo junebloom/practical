@@ -37,23 +37,30 @@ function usePlayer() {
     currentTime,
     duration,
     volume,
-    load: (recording) => {
+    load(recording) {
       audio.current.src = recording.url;
       audio.current.load();
       setSelected(recording);
       setCurrentTime(0);
       setDuration(recording.duration);
     },
-    play: () => {
+    reset() {
+      audio.current.src = "";
+      setSelected(null);
+      setPlaying(audio.current.paused);
+      setCurrentTime(audio.current.currentTime);
+      setDuration(audio.current.duration);
+    },
+    play() {
       audio.current.play();
     },
-    pause: () => {
+    pause() {
       audio.current.pause();
     },
-    seek: (time) => {
+    seek(time) {
       audio.current.currentTime = time;
     },
-    setVolume: (value) => {
+    setVolume(value) {
       audio.current.volume = value;
     },
   };
