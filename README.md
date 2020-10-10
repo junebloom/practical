@@ -2,9 +2,11 @@ A progressive web app for quickly and easily practicing singing, music, speaking
 
 ## TODO
 
+- manifest
+- footer info
+- gh pages
 - better slider dragging
+- undo delete
 - kb control
 - renaming
 - sessions/projects
-- a2hs
-- audio visualizations
