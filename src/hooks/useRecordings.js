@@ -14,33 +14,31 @@ function useRecordings() {
           autoIncrement: true,
         });
       },
-    })
-      .then((idb) => {
-        db.current = idb;
-        updateRecordings();
-      })
-      .catch((error) => {
-        console.error(error);
+    }).then(async (idb) => {
+      db.current = idb;
+
+      const results = await db.current.getAll("recordings");
+      results.forEach((recording) => {
+        recording.url = URL.createObjectURL(recording.blob);
+        console.log("id:", recording.id);
       });
+
+      setRecordings(results.reverse());
+    });
   }, []);
 
-  // Update the state with the recordings from the database
-  async function updateRecordings() {
-    const results = await db.current.getAll("recordings");
-    recordings.forEach(({ url }) => URL.revokeObjectURL(url));
-    results.forEach((recording) => {
-      recording.url = URL.createObjectURL(recording.blob);
-    });
-    setRecordings(results.reverse());
+  async function addRecording(recording) {
+    recording.id = await db.current.add("recordings", recording);
+    recording.url = URL.createObjectURL(recording.blob);
+    setRecordings((recordings) => [recording, ...recordings]);
   }
 
-  async function addRecording(recording) {
-    await db.current.add("recordings", recording);
-    await updateRecordings();
-  }
   async function deleteRecording(recording) {
     await db.current.delete("recordings", recording.id);
-    await updateRecordings();
+    URL.revokeObjectURL(recording.url);
+    setRecordings((recordings) =>
+      recordings.filter((item) => item !== recording)
+    );
   }
 
   return {
