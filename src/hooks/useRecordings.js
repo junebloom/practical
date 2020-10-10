@@ -20,7 +20,6 @@ function useRecordings() {
       const results = await db.current.getAll("recordings");
       results.forEach((recording) => {
         recording.url = URL.createObjectURL(recording.blob);
-        console.log("id:", recording.id);
       });
 
       setRecordings(results.reverse());
