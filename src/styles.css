@@ -3,13 +3,13 @@
   box-sizing: border-box;
 }
 html {
-  --color-primary: hsl(204, 72%, 74%);
-  --color-red: hsl(0, 100%, 76%);
-  --color-dark-primary: hsl(204, 37%, 49%);
-  --color-dark-red: hsl(0, 39%, 50%);
-  --color-dark: hsl(0, 0%, 30%);
-  --color-light: hsl(0, 0%, 93%);
-  --color-lighter: hsl(0, 0%, 98%);
+  --color-primary: hsl(207, 100%, 72%);
+  --color-red: hsl(0, 100%, 71%);
+  --color-dark-primary: hsl(234, 64%, 61%);
+  --color-dark-red: hsl(335, 36%, 48%);
+  --color-dark: hsl(300, 15%, 30%);
+  --color-light: hsl(0, 0%, 95%);
+  --color-lighter: hsl(0, 0%, 100%);
   --color-shadow: rgba(0, 0, 0, 0.15);
 
   background: var(--color-light);
