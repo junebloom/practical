@@ -18,7 +18,7 @@ function App() {
       "main",
       { className: "d-flex flex-column maxw-600 minh-full-vh mx-auto p-1" },
       h(Recorder, { addRecording }),
-      h("h1", null, "recordings"),
+      h("h2", null, "Recordings"),
       h(RecordingsList, { recordings, player, deleteRecording }),
       h("div", { className: "flex-grow" }),
       h(Footer)
