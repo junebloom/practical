@@ -1,6 +1,10 @@
+# Practical
+
 A simple audio recorder app, designed for rapid feedback while practicing speaking, singing, or whatever you're into.
 
 Practical is a Progressive Web App. It is completely offline and your data persists on your device until your browser cache is cleared. You can even install Practical on your device using the "add to home screen" feature of your browser.
+
+---
 
 ## Behind the scenes
 
@@ -41,9 +45,9 @@ h(RecordingsList, { recordings, player });
 <RecordingsList {...{ recordings, player }} />
 ```
 
-What is our object spreading _in to_, exactly? Some implied object literal that will be present after transpiling, I guess. It feels like a hack to write an invalid JS expression and then rely on the transpiler to complete it. It also feels silly to create an object literal whose sole purpose is to be spread. Beyond the weirdness of this use of the spread operator, it is still more verbose than plain JS.
+What is our object spreading _in to_, exactly? Some implied object literal that will be present after transpiling, I guess. It feels icky to write an invalid JS expression and then rely on the transpiler to complete it. It also feels silly to create an object literal whose sole purpose is to be spread. Beyond the weirdness of this use of the spread operator, it is still more verbose than plain JS.
 
-After critical examination it was hard to see any substantial benefit of JSX, at least for this project, so I tried dropping it entirely. And it turns out I had no problems at all with doing everything in JavaScript. In fact it felt more natural and consistent to write and consume components using JS.
+After critical examination it was hard to see any substantial benefit of JSX for this project, so I tried dropping it entirely. And it turns out I had no problems at all with doing everything in JavaScript. In fact it felt more natural and consistent to write and consume components using JS.
 
 This has the additional benefit that technically my project does not require a build step, though it may still be a good idea.
 
