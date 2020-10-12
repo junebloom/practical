@@ -49,7 +49,6 @@ This has the additional benefit that technically my project does not require a b
 
 ## TODO
 
-- footer info
 - gh pages
 - better slider dragging
 - undo delete

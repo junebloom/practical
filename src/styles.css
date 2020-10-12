@@ -17,9 +17,10 @@ html {
   font: 16px sans-serif;
 }
 body {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 1em;
+  margin: 0;
+}
+a {
+  color: var(--color-dark-primary);
 }
 
 /* Component styles */
@@ -81,6 +82,9 @@ body {
 .text-light {
   color: var(--color-light);
 }
+.text-dark {
+  color: var(--color-dark);
+}
 .text-left {
   text-align: left;
 }
@@ -127,11 +131,25 @@ body {
 .p-0 {
   padding: 0;
 }
+.mx-auto {
+  margin: 0 auto;
+}
+.ml-05 {
+  margin-left: 0.5em;
+}
+
+/* Size utilities */
+.maxw-600 {
+  max-width: 600px;
+}
 .w-full {
   width: 100%;
 }
 .w-4 {
   width: 4em;
+}
+.minh-full-vh {
+  min-height: 100vh;
 }
 .h-full {
   height: 100%;
