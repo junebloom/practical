@@ -134,6 +134,9 @@ a {
 .mx-auto {
   margin: 0 auto;
 }
+.mt-1 {
+  margin-top: 1em;
+}
 .ml-05 {
   margin-left: 0.5em;
 }

@@ -4,7 +4,7 @@ import { FaGithub } from "react-icons/fa";
 function Footer() {
   return h(
     "footer",
-    { className: "d-flex justify-between align-center" },
+    { className: "d-flex justify-between align-center mt-1" },
     h(
       "address",
       null,
