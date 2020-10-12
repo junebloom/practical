@@ -1,12 +1,12 @@
 {
   "name": "practical",
   "version": "1.0.0",
-  "main": "src/index.js",
   "author": "June Bloom <june.a.bloom@gmail.com>",
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start": "parcel src/index.html"
+    "start": "parcel src/index.html",
+    "build": "parcel build src/index.html"
   },
   "devDependencies": {
     "parcel": "^2.0.0-beta.1"
