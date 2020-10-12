@@ -1,7 +1,7 @@
 {
   "name": "Practical - Audio Recorder",
   "short_name": "Practical",
-  "description": "A simple audio recorder app, designed for rapid feedback while practicing speaking, singing, or whatever you're into.",
+  "description": "An audio recorder app designed for fast feedback and iteration.",
   "categories": ["utilities"],
   "scope": "/",
   "display": "standalone",
