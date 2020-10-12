@@ -1,4 +1,4 @@
-import { createElement as h } from "react";
+import { createElement as h, useState } from "react";
 import {
   MdPause,
   MdPlayArrow,
@@ -28,12 +28,43 @@ function formatTime(t) {
 }
 
 function ProgressBar({ player }) {
+  const [dragging, setDragging] = useState(false);
+  const [wasPlaying, setWasPlaying] = useState(false);
+
+  function updatePosition(e) {
+    player.seek(player.duration * getPosition(e.clientX, e.currentTarget));
+  }
+
   return h(
     "div",
     {
       className: "pos-relative flex-grow cursor-pointer",
-      onClick: (e) => {
-        player.seek(player.duration * getPosition(e.clientX, e.currentTarget));
+      onPointerDown(e) {
+        if (e.buttons === 1) {
+          setDragging(true);
+          setWasPlaying(player.playing);
+          updatePosition(e);
+          player.pause();
+        }
+      },
+      onPointerUp(e) {
+        if (dragging) {
+          setDragging(false);
+          updatePosition(e);
+          if (wasPlaying) player.play();
+        }
+      },
+      onPointerLeave(e) {
+        if (dragging) {
+          setDragging(false);
+          updatePosition(e);
+          if (wasPlaying) player.play();
+        }
+      },
+      onPointerMove(e) {
+        if (dragging) {
+          updatePosition(e);
+        }
       },
     },
     // Bar background
@@ -56,12 +87,38 @@ function ProgressBar({ player }) {
 }
 
 function VolumeSlider({ player }) {
+  const [dragging, setDragging] = useState(false);
+
+  function updatePosition(e) {
+    player.setVolume(getPosition(e.clientX, e.currentTarget));
+  }
+
   return h(
     "div",
     {
       className: "pos-relative w-4 cursor-pointer",
-      onClick: (e) => {
-        player.setVolume(getPosition(e.clientX, e.currentTarget));
+      onPointerDown(e) {
+        if (e.buttons === 1) {
+          setDragging(true);
+          updatePosition(e);
+        }
+      },
+      onPointerUp(e) {
+        if (dragging) {
+          setDragging(false);
+          updatePosition(e);
+        }
+      },
+      onPointerLeave(e) {
+        if (dragging) {
+          setDragging(false);
+          updatePosition(e);
+        }
+      },
+      onPointerMove(e) {
+        if (dragging) {
+          updatePosition(e);
+        }
       },
     },
     // Bar background
@@ -93,7 +150,7 @@ function VolumeSlider({ player }) {
 function PlaybackControls({ player }) {
   return h(
     "div",
-    { className: "d-flex bg-dark text-light" },
+    { className: "d-flex bg-dark text-light no-select" },
     // Play button
     h(
       "button",

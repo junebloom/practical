@@ -4,8 +4,6 @@ A simple audio recorder app, designed for rapid feedback while practicing speaki
 
 Practical is a Progressive Web App. It is completely offline and your data persists on your device until your browser cache is cleared. You can even install Practical on your device using the "add to home screen" feature of your browser.
 
----
-
 ## Behind the scenes
 
 My goal in making Practical is to create a little tool that is useful to me personally, respects privacy and data ownership, makes good use of the modern web platform, and which teaches me some new things.
@@ -54,7 +52,6 @@ This has the additional benefit that technically my project does not require a b
 ## TODO
 
 - gh pages
-- better slider dragging
 - undo delete
 - kb control
 - renaming
