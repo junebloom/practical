@@ -1,6 +1,6 @@
 # Practical
 
-A simple audio recorder app, designed for rapid feedback while practicing speaking, singing, or whatever you're into.
+A simple audio recorder app designed for rapid feedback while practicing speaking, singing, or whatever skill you're working on.
 
 Practical is a Progressive Web App. It is completely offline and your data persists on your device until your browser cache is cleared. You can even install Practical on your device using the "add to home screen" feature of your browser.
 
@@ -17,7 +17,7 @@ For example, I had a lot of fun digging into React hooks. Class components alway
 - IndexedDB (promisified via [idb](https://github.com/jakearchibald/idb)) - for offline data storage
 - Service Worker - for caching assets offline
 
-**I also chose _not to use JSX_ in this project.** At first, this was because I started the project with the technical goal of zero dependencies and no build step, but something unexpected happened once I dropped that requirement.
+I also chose _not to use JSX_ in this project. At first, this was because I started the project with the technical goal of zero dependencies and no build step, but something unexpected happened after I dropped that requirement.
 
 When I started, I had a very small custom VDOM, and the components I wrote for it were in plain JS. After running in to limitations with my VDOM, I chose to switch to React for the sake of completing the project, rather than reinvent the wheel. _(I'll totally give reinventing the wheel a shot at some point, though!)_
 
