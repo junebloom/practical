@@ -61,6 +61,11 @@ function ProgressBar({ player }) {
           if (wasPlaying) player.play();
         }
       },
+      onPointerCancel() {
+        if (dragging) {
+          setDragging(false);
+        }
+      },
       onPointerMove(e) {
         if (dragging) {
           updatePosition(e);
@@ -113,6 +118,11 @@ function VolumeSlider({ player }) {
         if (dragging) {
           setDragging(false);
           updatePosition(e);
+        }
+      },
+      onPointerCancel() {
+        if (dragging) {
+          setDragging(false);
         }
       },
       onPointerMove(e) {
