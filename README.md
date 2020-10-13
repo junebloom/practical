@@ -44,11 +44,3 @@ _(What is our object spreading in to, exactly? An implied object literal that wi
 It was hard to see the major benefit of JSX for this project, so I tried dropping it entirely, and it turns out I had almost no problems doing so. For application UI, it felt totally natural to write and consume using plain JS.
 
 However, a use-case that would certainly benefit from JSX is in the [Footer component](/src/components/Footer.js) of the app. It is an area that makes use of hypertext, and the plain JS code is a bit difficult to read, so writing it with some kind of purpose-made _HyperText Markup Language_ would make sense!
-
-## TODO
-
-- idb fallback
-- kb control
-- undo delete
-- renaming
-- sessions/projects
