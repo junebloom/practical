@@ -61,6 +61,11 @@ function ProgressBar({ player }) {
           if (wasPlaying) player.play();
         }
       },
+      onPointerCancel() {
+        if (dragging) {
+          setDragging(false);
+        }
+      },
       onPointerMove(e) {
         if (dragging) {
           updatePosition(e);
@@ -115,6 +120,11 @@ function VolumeSlider({ player }) {
           updatePosition(e);
         }
       },
+      onPointerCancel() {
+        if (dragging) {
+          setDragging(false);
+        }
+      },
       onPointerMove(e) {
         if (dragging) {
           updatePosition(e);
@@ -150,7 +160,7 @@ function VolumeSlider({ player }) {
 function PlaybackControls({ player }) {
   return h(
     "div",
-    { className: "d-flex bg-dark text-light no-select" },
+    { className: "d-flex bg-dark text-light no-select no-touch-action" },
     // Play button
     h(
       "button",
