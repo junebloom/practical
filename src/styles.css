@@ -168,3 +168,6 @@ a {
 .no-select {
   user-select: none;
 }
+.no-touch-action {
+  touch-action: none;
+}
