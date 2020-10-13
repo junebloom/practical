@@ -47,7 +47,6 @@ However, a use-case that would certainly benefit from JSX is in the [Footer comp
 
 ## TODO
 
-- gh pages
 - idb fallback
 - kb control
 - undo delete
