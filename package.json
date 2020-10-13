@@ -4,9 +4,15 @@
   "author": "June Bloom <june.a.bloom@gmail.com>",
   "license": "MIT",
   "private": true,
+  "browserslist": [
+    "last 2 versions",
+    "> 0.5%",
+    "not dead",
+    "not IE 11"
+  ],
   "scripts": {
     "start": "parcel serve ./src/index.html",
-    "build": "parcel build ./src/index.html --dist-dir docs --public-url /practical/"
+    "build": "parcel build ./src/index.html --dist-dir ./docs/ --public-url /practical/"
   },
   "devDependencies": {
     "parcel": "^2.0.0-beta.1"
