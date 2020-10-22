@@ -6,7 +6,7 @@ Practical is a Progressive Web App. It is completely offline and your data persi
 
 ## Behind the scenes
 
-My goal in making Practical is to create a little tool that is useful to me personally, respects privacy and data ownership, makes good use of the modern web platform, and which teaches me some new things.
+My goal in making Practical was to create a little tool that is useful to me personally, respects privacy and data ownership, makes good use of the modern web platform, and which teaches me some new things.
 
 ### Technologies
 
@@ -23,8 +23,8 @@ After translating my components to JSX, I was a bit surprised to find that they 
 
 ```js
 import { createElement as h } from "react";
-
 // ...
+
 // In plain JS we just pass an object:
 h(RecordingsList, { recordings, player });
 ```
@@ -43,4 +43,4 @@ _(What is our object spreading in to, exactly? An implied object literal that wi
 
 It was hard to see the major benefit of JSX for this project, so I tried dropping it entirely, and it turns out I had almost no problems doing so. For application UI, it felt totally natural to write and consume using plain JS.
 
-However, a use-case that would certainly benefit from JSX is in the [Footer component](/src/components/Footer.js) of the app. It is an area that makes use of hypertext, and the plain JS code is a bit difficult to read, so writing it with some kind of purpose-made _HyperText Markup Language_ would make sense!
+However, a use-case that would certainly benefit from JSX is in the [Footer component](/src/components/Footer.js) of the app. It is an area that makes use of hypertext, and the plain JS code is a bit difficult to read, so writing it with a purpose-made _HyperText Markup Language_ would make sense!
