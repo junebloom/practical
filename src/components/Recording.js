@@ -18,7 +18,7 @@ function Recording({ recording, player, deleteRecording }) {
       h(
         "button",
         {
-          className: "button flex-grow text-left p-05",
+          className: "button flex-grow text-left p-075",
           onClick: () => {
             player.load(recording);
             player.play();
@@ -37,7 +37,7 @@ function Recording({ recording, player, deleteRecording }) {
       h(
         "a",
         {
-          className: "button w-4 p-05 d-flex justify-center",
+          className: "button w-4 p-075 d-flex justify-center",
           href: recording.url,
           download: "recording.ogg",
         },
@@ -47,7 +47,7 @@ function Recording({ recording, player, deleteRecording }) {
       h(
         "button",
         {
-          className: "button w-4 p-05 d-flex justify-center",
+          className: "button w-4 p-075 d-flex justify-center",
           onClick: () => {
             deleteRecording(recording);
             if (isSelected) player.reset();
