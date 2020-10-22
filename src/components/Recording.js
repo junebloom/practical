@@ -1,7 +1,7 @@
 import { createElement as h } from "react";
 import { MdClose, MdFileDownload } from "react-icons/md";
 
-import PlaybackControls from "./PlaybackControls";
+import PlaybackControls from "./PlaybackControls.js";
 
 // Recordings list item
 function Recording({ recording, player, deleteRecording }) {
