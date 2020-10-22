@@ -15,6 +15,8 @@ My goal in making Practical was to create a little tool that is useful to me per
 - IndexedDB (promisified via [idb](https://github.com/jakearchibald/idb)) - for offline data storage
 - Service Worker - for caching assets offline
 
+### Some thoughts on JSX
+
 I also experimented with _not_ using JSX in this project. At first, this was because I started the project with the technical goal of zero dependencies and no build step, but I decided to stick with plain JS even after I dropped that requirement.
 
 When I started, I had a very small custom VDOM, and the components I wrote for it were in plain JS. After running in to limitations with my VDOM, I chose to switch to React for the sake of completing the project, rather than reinvent the wheel. _(I'll totally give reinventing the wheel a shot at some point, though!)_
@@ -43,4 +45,16 @@ _(What is our object spreading in to, exactly? An implied object literal that wi
 
 It was hard to see the major benefit of JSX for this project, so I tried dropping it entirely, and it turns out I had almost no problems doing so. For application UI, it felt totally natural to write and consume using plain JS.
 
-However, a use-case that would certainly benefit from JSX is in the [Footer component](/src/components/Footer.js) of the app. It is an area that makes use of hypertext, and the plain JS code is a bit difficult to read, so writing it with a purpose-made _HyperText Markup Language_ would make sense!
+However, a use-case that would certainly benefit from JSX is in the [Footer component](/src/components/Footer.js) of the app. It is an area that makes use of hypertext, and the plain JS code is a bit difficult to read.
+
+It was a fun experiment to try not using JSX and to get a glimpse at the "magic" behind what JSX transpilation does for us. But JSX exists for a reason. Having the ability to author more kinds of components more easily is super valuable, especially as apps grow over time. I wouldn't want to maintain a large library of hypertext-heavy components written with plain `createElement` calls.
+
+[React's docs](https://reactjs.org/docs/introducing-jsx.html#why-jsx) give some basic justifications for JSX, and the [JSX specification](https://facebook.github.io/jsx/) gives some slightly more nuanced justifications, particularly regarding the obvious alternative of template literals.
+
+Amusingly, while these sources explain the rationale for JSX itself, neither explains the rationale for the name.
+
+What does it _mean_? JSX(tension)? JSX(ML)? The spec states:
+
+> JSX is an XML-like syntax extension to ECMAScript without any defined semantics.
+
+Perhaps it is the case that, like the extension itself, the name has no defined semantics. It is simply JSX.
