@@ -78,13 +78,13 @@ function ProgressBar({ player }) {
     }),
     // Bar foreground
     h("div", {
-      className: "pos-absolute h-05 bottom-0 bg-red shadow",
+      className: "pos-absolute h-05 bottom-0 bg-red",
       style: { width: `${(player.currentTime / player.duration) * 100}%` },
     }),
     // Text container
     h(
       "div",
-      { className: "flex-grow d-flex justify-between p-05" },
+      { className: "flex-grow d-flex justify-between p-075" },
       h("div", {}, formatTime(player.currentTime)),
       h("div", {}, formatTime(player.duration))
     )
@@ -137,14 +137,14 @@ function VolumeSlider({ player }) {
     }),
     // Bar foreground
     h("div", {
-      className: "pos-absolute h-05 bottom-0 bg-primary shadow",
+      className: "pos-absolute h-05 bottom-0 bg-primary",
       style: { width: `${player.volume * 100}%` },
     }),
     // Icon container
     h(
       "div",
       {
-        className: "p-05 d-flex justify-center",
+        className: "p-075 d-flex justify-center",
       },
       h(
         player.volume > 0.33
@@ -165,7 +165,7 @@ function PlaybackControls({ player }) {
     h(
       "button",
       {
-        className: "button button--dark w-4 p-05 d-flex justify-center",
+        className: "button button--dark w-4 p-075 d-flex justify-center",
         onClick: () => (player.playing ? player.pause() : player.play()),
       },
       h(player.playing ? MdPause : MdPlayArrow)
