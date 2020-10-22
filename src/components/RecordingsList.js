@@ -1,5 +1,5 @@
 import { createElement as h } from "react";
-import Recording from "./Recording";
+import Recording from "./Recording.js";
 
 function RecordingsList({ recordings, player, deleteRecording }) {
   return h(

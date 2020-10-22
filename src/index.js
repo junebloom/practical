@@ -1,6 +1,6 @@
 import { createElement as h } from "react";
 import { render } from "react-dom";
-import App from "./components/App";
+import App from "./components/App.js";
 
 // Register the offline service worker
 if (navigator.serviceWorker) {

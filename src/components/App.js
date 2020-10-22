@@ -3,8 +3,8 @@ import useRecordings from "../hooks/useRecordings.js";
 import usePlayer from "../hooks/usePlayer.js";
 
 import { IconContext } from "react-icons";
-import Recorder from "./Recorder";
-import RecordingsList from "./RecordingsList";
+import Recorder from "./Recorder.js";
+import RecordingsList from "./RecordingsList.js";
 import Footer from "./Footer.js";
 
 function App() {
