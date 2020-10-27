@@ -2,7 +2,7 @@
   "name": "practical",
   "version": "1.0.0",
   "author": "June Bloom <june.a.bloom@gmail.com>",
-  "license": "MIT",
+  "license": "AGPL-3.0-or-later",
   "private": true,
   "browserslist": [
     "last 2 versions",
