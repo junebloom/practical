@@ -10,7 +10,7 @@ function Footer() {
       "address",
       { className: "ml-05" },
       "created by ",
-      h("a", { href: "https://github.com/junebloom" }, "June Bloom")
+      h("a", { href: "https://junebloom.github.io" }, "Juniper Bloom")
     ),
     h("span", { className: "flex-grow" }),
     h(
