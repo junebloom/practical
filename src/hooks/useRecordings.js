@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import { openDB } from "idb";
 
 function useRecordings() {
+  const [loaded, setLoaded] = useState(false);
   const [recordings, setRecordings] = useState([]);
   const db = useRef();
 
@@ -23,6 +24,7 @@ function useRecordings() {
       });
 
       setRecordings(results.reverse());
+      setLoaded(true);
     });
   }, []);
 
@@ -41,6 +43,7 @@ function useRecordings() {
   }
 
   return {
+    loaded,
     recordings,
     addRecording,
     deleteRecording,

@@ -10,7 +10,7 @@ import RecordingsList from "./RecordingsList.js";
 import Footer from "./Footer.js";
 
 function App() {
-  const { recordings, addRecording, deleteRecording } = useRecordings();
+  const { recordings, loaded, addRecording, deleteRecording } = useRecordings();
   const player = usePlayer();
   const [error, setError] = useState();
 
@@ -32,7 +32,8 @@ function App() {
         null,
         recordings.length > 0
           ? h(RecordingsList, { recordings, player, deleteRecording })
-          : h(
+          : loaded
+          ? h(
               "div",
               null,
               h("p", null, "Your lovely audio clips will appear here."),
@@ -47,6 +48,7 @@ function App() {
                 "*Note that clearing your browser cache will erase any recordings living here."
               )
             )
+          : null
       ),
       h("div", { className: "flex-grow" }),
       h(Footer)
