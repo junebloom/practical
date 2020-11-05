@@ -30,7 +30,23 @@ function App() {
       h(
         ErrorBoundary,
         null,
-        h(RecordingsList, { recordings, player, deleteRecording })
+        recordings.length > 0
+          ? h(RecordingsList, { recordings, player, deleteRecording })
+          : h(
+              "div",
+              null,
+              h("p", null, "Your lovely audio clips will appear here."),
+              h(
+                "p",
+                null,
+                "Practical works 100% offline. After your first visit, you can load this page even if you don't have an internet connection, and your recordings will always* be here waiting for you!"
+              ),
+              h(
+                "em",
+                { className: "text-sm" },
+                "*Note that clearing your browser cache will erase any recordings living here."
+              )
+            )
       ),
       h("div", { className: "flex-grow" }),
       h(Footer)
