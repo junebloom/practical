@@ -19,7 +19,7 @@ function Footer() {
         href: "https://github.com/junebloom/practical",
         className: "d-flex",
       },
-      h(FaGithub, { className: "ml-05 text-dark" })
+      h(FaGithub, { className: "ml-05 text-darker" })
     )
   );
 }
