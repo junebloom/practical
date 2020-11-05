@@ -60,10 +60,15 @@ function Recorder({ addRecording, setError }) {
         // Timestamp
         const ts = new Date();
         // Pieces for file name
-        const date = `${ts.getFullYear()}-${ts.getMonth() + 1}-${ts.getDate()}`;
-        const time = `${ts.getHours()} ${ts.getMinutes()} ${ts.getSeconds()}`;
+        const pad = (n) => n.toString().padStart(2, "0");
+        const year = pad(ts.getFullYear());
+        const month = pad(ts.getMonth());
+        const date = pad(ts.getDate());
+        const hours = pad(ts.getHours());
+        const minutes = pad(ts.getMinutes());
+        const seconds = pad(ts.getSeconds());
         // File name
-        const name = `${date} ${time}`;
+        const name = `${year}-${month}-${date} ${hours} ${minutes} ${seconds}`;
 
         addRecording({
           timestamp: ts,
