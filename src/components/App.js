@@ -36,7 +36,11 @@ function App() {
           ? h(
               "div",
               null,
-              h("p", null, "Your lovely audio clips will appear here."),
+              h(
+                "p",
+                null,
+                "Welcome to Practical! Your lovely recordings will appear here."
+              ),
               h(
                 "p",
                 null,
