@@ -4,9 +4,9 @@ import { MdMic, MdStop } from "react-icons/md";
 // UI component for recording user audio
 function Recorder({ addRecording }) {
   const [isRecording, setIsRecording] = useState(false);
-  const slices = useRef([]);
   const recorder = useRef();
   const startTime = useRef();
+  const blob = useRef();
 
   useEffect(() => {
     async function setupRecorder() {
@@ -16,44 +16,29 @@ function Recorder({ addRecording }) {
           autoGainControl: false,
           echoCancellation: false,
           noiseSuppression: false,
-          sampleRate: 48000,
         },
       });
 
-      let type = MediaRecorder.isTypeSupported("audio/ogg")
-        ? "audio/ogg"
-        : "audio/webm";
-
       // Use the stream to create a MediaRecorder
-      recorder.current = new MediaRecorder(stream, {
-        mimeType: type,
-        audioBitsPerSecond: 128000,
-      });
+      recorder.current = new MediaRecorder(stream);
 
       // Track the start time so we can estimate the duration metadata
       recorder.current.addEventListener("start", () => {
         startTime.current = performance.now();
       });
 
-      // Store each chunk of recording data as it becomes available
+      // Hold the recording data in a ref when it becomes available
       recorder.current.addEventListener("dataavailable", ({ data }) => {
-        slices.current.push(data);
+        blob.current = data;
       });
 
-      // Handle the end of the recording
+      // Store the recorded audio with its metadata when recording stops
       recorder.current.addEventListener("stop", () => {
-        // Join the chunks of partial data together into the final recording
-        const blob = new Blob(slices.current, { type: slices.current[0].type });
-
-        // Create an object with the recording data and metadata
-        const recording = {
+        addRecording({
           duration: (performance.now() - startTime.current) / 1000,
           timestamp: new Date(),
-          blob,
-        };
-
-        // Store the recording object for use elsewhere
-        addRecording(recording);
+          blob: blob.current,
+        });
       });
     }
     setupRecorder();
@@ -61,7 +46,6 @@ function Recorder({ addRecording }) {
 
   // Starts recording
   function start() {
-    slices.current = [];
     recorder.current.start();
     setIsRecording(true);
   }
