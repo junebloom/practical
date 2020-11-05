@@ -34,9 +34,19 @@ function Recorder({ addRecording }) {
 
       // Store the recorded audio with its metadata when recording stops
       recorder.current.addEventListener("stop", () => {
+        // Timestamp
+        const ts = new Date();
+        // Pieces for file name
+        const date = `${ts.getFullYear()}-${ts.getMonth() + 1}-${ts.getDate()}`;
+        const time = `${ts.getHours()} ${ts.getMinutes()} ${ts.getSeconds()}`;
+        // File name
+        const name = `${date} ${time}`;
+
         addRecording({
+          timestamp: ts,
+          name,
+          extension: blob.current.type.match(/\/(\w+)/)[1],
           duration: (performance.now() - startTime.current) / 1000,
-          timestamp: new Date(),
           blob: blob.current,
         });
       });

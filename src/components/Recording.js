@@ -39,7 +39,7 @@ function Recording({ recording, player, deleteRecording }) {
         {
           className: "button w-4 p-075 d-flex justify-center",
           href: recording.url,
-          download: "recording.ogg",
+          download: `${recording.name}.${recording.extension}`,
         },
         h(MdFileDownload)
       ),
