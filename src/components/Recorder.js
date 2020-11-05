@@ -2,7 +2,7 @@ import { useRef, useState, useEffect, createElement as h } from "react";
 import { MdMic, MdStop } from "react-icons/md";
 
 // UI component for recording user audio
-function Recorder({ addRecording }) {
+function Recorder({ addRecording, setError }) {
   const [isRecording, setIsRecording] = useState(false);
   const recorder = useRef();
   const startTime = useRef();
@@ -10,17 +10,34 @@ function Recorder({ addRecording }) {
 
   useEffect(() => {
     async function setupRecorder() {
-      // Create the input stream from the user's microphone
-      const stream = await navigator.mediaDevices.getUserMedia({
-        audio: {
-          autoGainControl: false,
-          echoCancellation: false,
-          noiseSuppression: false,
-        },
-      });
+      if (!navigator.mediaDevices) {
+        const error = new DOMException(
+          "Your browser may not support audio recording",
+          "NotSupportedError"
+        );
+        setError(error);
+        throw error;
+      }
 
-      // Use the stream to create a MediaRecorder
-      recorder.current = new MediaRecorder(stream);
+      try {
+        // Create the input stream from the user's microphone
+        const stream = await navigator.mediaDevices.getUserMedia({
+          audio: {
+            autoGainControl: false,
+            echoCancellation: false,
+            noiseSuppression: false,
+          },
+        });
+
+        // Stop the current recorder, in case this gets re-run while recording.
+        if (recorder.current) recorder.current.stop();
+
+        // Use the stream to create a MediaRecorder
+        recorder.current = new MediaRecorder(stream);
+      } catch (error) {
+        setError(error);
+        throw error;
+      }
 
       // Track the start time so we can estimate the duration metadata
       recorder.current.addEventListener("start", () => {
@@ -30,6 +47,12 @@ function Recorder({ addRecording }) {
       // Hold the recording data in a ref when it becomes available
       recorder.current.addEventListener("dataavailable", ({ data }) => {
         blob.current = data;
+      });
+
+      // Handle recording errors
+      recorder.current.addEventListener("error", ({ error }) => {
+        setError(error);
+        throw error;
       });
 
       // Store the recorded audio with its metadata when recording stops

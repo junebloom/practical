@@ -1,8 +1,9 @@
-import { createElement as h } from "react";
+import { createElement as h, useState } from "react";
 import useRecordings from "../hooks/useRecordings.js";
 import usePlayer from "../hooks/usePlayer.js";
 
 import { IconContext } from "react-icons";
+import Error from "./Error.js";
 import ErrorBoundary from "./ErrorBoundary.js";
 import Recorder from "./Recorder.js";
 import RecordingsList from "./RecordingsList.js";
@@ -11,6 +12,7 @@ import Footer from "./Footer.js";
 function App() {
   const { recordings, addRecording, deleteRecording } = useRecordings();
   const player = usePlayer();
+  const [error, setError] = useState();
 
   return h(
     IconContext.Provider,
@@ -18,7 +20,12 @@ function App() {
     h(
       "main",
       { className: "d-flex flex-column maxw-600 minh-full-vh mx-auto p-1" },
-      h(ErrorBoundary, null, h(Recorder, { addRecording })),
+      h(
+        ErrorBoundary,
+        null,
+        error ? h(Error, { error }) : null,
+        h(Recorder, { addRecording, setError })
+      ),
       h("h2", null, "Recordings"),
       h(
         ErrorBoundary,

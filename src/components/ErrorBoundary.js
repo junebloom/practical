@@ -1,4 +1,5 @@
 import { Component, createElement as h } from "react";
+import Error from "./Error.js";
 
 class ErrorBoundary extends Component {
   constructor(props) {
@@ -12,12 +13,7 @@ class ErrorBoundary extends Component {
 
   render() {
     if (this.state.error) {
-      return h(
-        "div",
-        {},
-        h("h2", {}, "Oh no! An error occurred."),
-        h("p", {}, this.state.error.toString())
-      );
+      return h(Error, { error: this.state.error });
     }
 
     return this.props.children;
